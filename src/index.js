@@ -10,7 +10,7 @@ const bodyParser=require('body-parser');
 var fs = require('fs'); 
 var path = require('path'); 
 const requireAuth=require('./middlewares/requireAuth')
-
+let port = process.env.PORT;
 const app=express()
 
 app.use(bodyParser.json())//This is used for parsing the json information so that the api undestands 
@@ -42,7 +42,10 @@ app.get('/',(req,res)=>{
 })
 
 
-app.listen(8000,()=>{
+if (port == null || port == "") {
+    port = 8000;
+  }
+app.listen(port,()=>{
     console.log("Listening on prot 8000")
 })
 
